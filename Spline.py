@@ -4,6 +4,19 @@ import matplotlib.pyplot as plt
 
 
 def create_figure(t, c, k=3, imagePath='./static/uploads/kn2c.jpg', outputName='Spline.jpg'):
+    """
+    :param t: a 1d numpy array describing knots
+    :param c: a 2d numpy array describing coefficients
+    :param k: B-spline degree
+    :param imagePath: path to the input image location
+    :param outputName: name of the image which spline was drawn on it
+    :return: path to to image with spline on it
+
+    this function creates a matplotlib figure based on the image that was passed
+    to it and tck parameters. By using the scipy library and interpolation, we can get a cubic
+    B-spline evaluation just by using scipy.interpolate.splev and passing tck parameters to it
+    """
+
 
     I = plt.imread(imagePath)
     ctr = c

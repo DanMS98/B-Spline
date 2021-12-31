@@ -1,12 +1,13 @@
 import os.path
-
-from flask import Flask, render_template, url_for, request, flash, redirect
+from flask import Flask, render_template, request, flash, redirect
 from flask_sqlalchemy import SQLAlchemy
 from Spline import create_figure
 import numpy as np
 from flask_bootstrap import Bootstrap
 
-
+"""
+CREATIGN FLASK APP
+"""
 app = Flask(__name__)
 Bootstrap(app)
 UPLOAD_FOLDER = './static/uploads/'
@@ -15,6 +16,9 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.secret_key = "DANAXA"
 db = SQLAlchemy(app)
 
+"""
+CREATING DEMO T, C AND K
+"""
 demo_ctr = np.array([(232, 125), (315, 191), (326, 232), (278, 236), (203, 207), (182.3, 235.), (190, 250),
                     (172.5, 368), (85, 381), (0, 420), ])
 t = np.linspace(0, 1, len(demo_ctr)-2, endpoint=True)
@@ -31,8 +35,16 @@ def allowed_exts(filename):
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
+    """
+    :return: None
+    this is the main page of the web app. Based on the methods that were called, it returns
+    a html page to browser. If the method is GET, it simply renders default page, if the method is post,
+    it gets the params from the form and calls create_figure to create a spline on the uploaded image.
+    if no params were entered as t, c and k, it uses default values which were initialed above.
+    """
+
     if request.method == "GET":
-        return render_template('index.html', name='new_plot', url='./static/images/kn2c.png')
+        return render_template('index.html', name='new_plot', url='./static/images/corn.png')
 
     elif request.method == "POST":
         if 'file' not in request.files:
@@ -81,4 +93,4 @@ def index():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
