@@ -32,7 +32,7 @@ def allowed_exts(filename):
 @app.route('/', methods=['POST', 'GET'])
 def index():
     if request.method == "GET":
-        return render_template('index.html', name='new_plot', url='./static/images/kn2c.jpeg')
+        return render_template('index.html', name='new_plot', url='./static/images/kn2c.png')
 
     elif request.method == "POST":
         if 'file' not in request.files:
@@ -43,18 +43,29 @@ def index():
         T = request.form.get('T')
         C = request.form.get('C')
         K = request.form.get('K')
+
+        print("t is ", t)
         if C is '':
             flash('no value for C declared, using default values')
             C = demo_ctr
+        else:
+            C = np.fromstring(C, dtype=float, sep=',')
+            C = np.reshape(C, (-1, 2))
+            print("C is ", C)
+
         if T is '':
             flash('no value for T declared, using default values')
             T = t
+        else:
+            T = np.fromstring(T, dtype=float, sep=',')
+            print("T is ", T)
+
         if K is '':
             flash('no value for K declared, using default values')
             K = 3
-        K = int(K)
-        print(f'HEREEE {t, demo_ctr, k}')
-        print(f'HEREEE {T, C, K}')
+        else:
+            K = int(K)
+
         if file.filename == '':
             flash('No file selected')
             return redirect('/')

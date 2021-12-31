@@ -7,7 +7,6 @@
 
 {%block body%}
 <div class="content">
-    <h1>Spline: </h1>
     <p>
         {% with ms  = get_flashed_messages()%}
             {% if ms %}
@@ -20,7 +19,18 @@
         {% endwith %}
     </p>
     <div class="form-row">
-
+        <h2> How To Use</h2>
+        <p>
+            first, select the image and upload it. Next, you are going to need to enter
+            the t, c, and k parameters, the k parameter is just an integer value, but as for t and c,
+            you need to enter and array of numbers(which can be float or integer) and separate them by ','
+            keep that in mind that c values are coefficients, so you need to enter them by pair. You don't need
+            to do anything complicated, just enter a 1D array by entering Xs and Ys, for example 100, 100, 200, 200 means point(100,100)
+            and (200, 200). But for values in t, just enter them and separate them by ','.
+            also, I have set some default values inside the code, since T is needed to be an evenly distributed array which
+            depends on the length of coefficient array, I calculated them only for default values. But since
+            you asked me to have an option for manually entering them, I did so. Have fun!
+        </p>
         <form method="post" action="/" enctype="multipart/form-data">
 
             <div class="mb-3">
