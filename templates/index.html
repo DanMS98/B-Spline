@@ -25,23 +25,18 @@
 
             <div class="mb-3">
                 <label for="formFile" class="form-label">Select your picture here</label>
-                <input class="form-control" type="file" id="formFile" name="file">
+                <input class="form-control" type="file" id="formFile" name="file" required>
+                <input type="text" id="T" placeholder="Enter T array here" name="T">
+                <input type="text" id="C" placeholder="Enter Coefficients array here" name="C">
+                <input type="text" id="K" placeholder="Enter K Value here" name="K">
             </div>
 
-            <div class="col">
-                <input type="text" name="ctr" class="form-control" placeholder="Enter Coefficents here">
-            </div>
-            <div class="col">
-                <input type="text" name="t" class="form-control" placeholder="Enter T array here">
-            </div>
-            <div class="col">
-                <input type="text" name="k" class="form-control" placeholder="Enter K value here">
-            </div>
             <p>
-                <input type="submit" value="Upload pic" class="btn btn-info">
+                <input type="submit" value="Apply changes!" class="btn btn-info">
             </p>
         </form>
+        <img src={{url}} class="image" alt="spline demo" >
     </div>
-    <img src={{url}} class="center" alt="spline demo" >
+    
 </div>
 {% endblock %}
